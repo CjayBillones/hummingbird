@@ -7,7 +7,7 @@
 class OAuth2::RefreshToken < OAuth2::Token
   def initialize(user, client, scopes, opts={})
     opts = {
-      exp: 6.months.from_now.to_i,
+      exp: (Time.now + 6.months.to_i).to_i,
       token_scopes: scopes
     }.merge(opts)
     super(user, client, %i[oauth2_refresh], opts)
